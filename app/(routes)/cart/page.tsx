@@ -15,6 +15,7 @@ export default function Page() {
     const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '')
 
     const buyStripe = async () => {
+        removeAll()
         try {
             const stripe = await stripePromise
             const res = await makePaymentRequest.post("/api/orders", {
@@ -30,7 +31,7 @@ export default function Page() {
     }
 
     return (
-        <div className="max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8 lg:min-h-[80vh]">
             <h1 className="mb-5 text-3xl font-bold">Shopping Cart</h1>
             <div className="grid sm:grid-cols-2 sm:gap-5">
                 <div>
